@@ -1,11 +1,13 @@
 ElEMENT_FROM_LIST = '.element'
 BUTTON_DELETE = 'btnDelete'
-const listOfElements = document.querySelector('#listOfElements')
+ELEMENT_TEXT = 'element__text'
+CLASS_ELEMENT_TEXT = '.element__text'
+const todoList = document.querySelector('#todoList')
 const inputMessage = document.querySelector('#inputMessage')
 const button = document.querySelector('#btnSend')
 
 button.addEventListener('click', onButtonSendClick)
-listOfElements.addEventListener('click', onListOfElementsClick)
+todoList.addEventListener('click', onTodoListClick)
 
 function onButtonSendClick() {
     const message = getMessage()
@@ -18,12 +20,20 @@ function onButtonSendClick() {
     }
 }
 
-function onListOfElementsClick(e) {
+function onTodoListClick(e) {
     const target = e.target
     const elementFromList = findElement(target)
+    const titleOfElement = findTitleOfElement(target)
 
     if (isButtonDelete(target)){
         elementFromList.remove()
+    }
+    if (isElementText(target)) {
+        if (titleOfElement.style.backgroundColor === 'lightgreen'){
+        titleOfElement.style.backgroundColor = 'white'
+        } else {
+            titleOfElement.style.backgroundColor = 'lightgreen'
+        }
     }
 }
 
@@ -31,8 +41,17 @@ function findElement(area) {
     return area.closest(ElEMENT_FROM_LIST)
 }
 
+
+function findTitleOfElement(area) {
+    return area.closest(CLASS_ELEMENT_TEXT)
+}
+
 function isButtonDelete(area) {
     return area.classList.contains(BUTTON_DELETE)
+}
+
+function isElementText(area) {
+    return area.classList.contains(ELEMENT_TEXT)
 }
 
 function getMessage() {
@@ -50,7 +69,7 @@ function renderList(message) {
 <span class="element__text">${message.text}</span>
 <button class="btnDelete">Delete</button></li>`
 
-    listOfElements.insertAdjacentHTML('beforeend', htmlElement)
+    todoList.insertAdjacentHTML('beforeend', htmlElement)
 }
 
 function clear() {
