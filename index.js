@@ -1,7 +1,5 @@
 ElEMENT_FROM_LIST = '.element'
 BUTTON_DELETE = 'btnDelete'
-ELEMENT_TEXT = 'element__text'
-CLASS_ELEMENT_TEXT = '.element__text'
 const todoList = document.querySelector('#todoList')
 const inputMessage = document.querySelector('#inputMessage')
 const button = document.querySelector('#btnSend')
@@ -37,11 +35,6 @@ function onTodoListClick(e) {
 
 function findElement(area) {
     return area.closest(ElEMENT_FROM_LIST)
-}
-
-
-function findTitleOfElement(area) {
-    return area.closest(CLASS_ELEMENT_TEXT)
 }
 
 function isButtonDelete(area) {
