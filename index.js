@@ -23,16 +23,14 @@ function onButtonSendClick() {
 function onTodoListClick(e) {
     const target = e.target
     const elementFromList = findElement(target)
-    const titleOfElement = findTitleOfElement(target)
 
     if (isButtonDelete(target)){
         elementFromList.remove()
-    }
-    if (isElementText(target)) {
-        if (titleOfElement.style.backgroundColor === 'lightgreen'){
-        titleOfElement.style.backgroundColor = 'white'
+    } else {
+        if (elementFromList.style.backgroundColor === 'lightgreen'){
+            elementFromList.style.backgroundColor = 'white'
         } else {
-            titleOfElement.style.backgroundColor = 'lightgreen'
+            elementFromList.style.backgroundColor = 'lightgreen'
         }
     }
 }
@@ -48,10 +46,6 @@ function findTitleOfElement(area) {
 
 function isButtonDelete(area) {
     return area.classList.contains(BUTTON_DELETE)
-}
-
-function isElementText(area) {
-    return area.classList.contains(ELEMENT_TEXT)
 }
 
 function getMessage() {
